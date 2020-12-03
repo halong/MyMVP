@@ -6,7 +6,7 @@ import com.example.mymvp.base.mvp.BaseModel
 import com.example.mymvp.base.mvp.BasePresenter
 import com.example.mymvp.base.mvp.BaseView
 
-abstract class BaseFragment<V : BaseView, M : BaseModel, P : BasePresenter<V, M>> : Fragment() {
+abstract class BaseFragment<M : BaseModel, V : BaseView, P : BasePresenter<M, V>> : Fragment() {
     private lateinit var mPresenter: P
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

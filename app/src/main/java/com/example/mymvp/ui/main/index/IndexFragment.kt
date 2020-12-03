@@ -10,7 +10,7 @@ import com.example.mymvp.base.BaseFragment
 import com.example.mymvp.databinding.FragmentIndexBinding
 
 
-class IndexFragment : BaseFragment<IndexView, IndexModel, IndexPresenter>() {
+class IndexFragment : BaseFragment< IndexModel,IndexView, IndexPresenter>() {
     private lateinit var binding: FragmentIndexBinding
 
     override fun onCreateView(

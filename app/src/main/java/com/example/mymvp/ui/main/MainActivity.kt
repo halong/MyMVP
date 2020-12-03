@@ -15,7 +15,7 @@ import com.example.mymvp.databinding.ActivityMainBinding
  * Activity实现View接口，并持有Presenter对象
  */
 
-class MainActivity : BaseActivity<MainView,MainModel,MainPresenter>(), MainView {
+class MainActivity : BaseActivity<MainModel,MainView,MainPresenter>(), MainView {
     private lateinit var binding: ActivityMainBinding //这个类名与布局文件名对应
     
     override fun onCreate(savedInstanceState: Bundle?) {

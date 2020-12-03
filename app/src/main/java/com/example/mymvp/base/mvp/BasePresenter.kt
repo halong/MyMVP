@@ -1,6 +1,6 @@
 package com.example.mymvp.base.mvp
 
-abstract class BasePresenter<V : BaseView, M : BaseModel> {
+abstract class BasePresenter< M : BaseModel,V : BaseView> {
     private var mView: V? = null
     private val mModel = setModel()
 

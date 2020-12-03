@@ -4,7 +4,7 @@ import com.example.mymvp.base.mvp.BasePresenter
 import com.example.mymvp.bean.Banner
 
 //Presenter负责视图与数据之间的逻辑
-class MainPresenter : BasePresenter<MainView, MainModel>() {
+class MainPresenter : BasePresenter<MainModel,MainView>() {
     fun test() {
         getModel().getBaiduHtml(object : MainModel.Callback<String> {
             override fun success(data: String) {

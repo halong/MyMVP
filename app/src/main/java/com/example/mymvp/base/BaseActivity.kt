@@ -6,7 +6,7 @@ import com.example.mymvp.base.mvp.BaseModel
 import com.example.mymvp.base.mvp.BasePresenter
 import com.example.mymvp.base.mvp.BaseView
 
-abstract class BaseActivity<V : BaseView, M : BaseModel, P : BasePresenter<V, M>> :
+abstract class BaseActivity<M : BaseModel, V : BaseView, P : BasePresenter<M, V>> :
     AppCompatActivity() {
     //****泛型里面引用其他泛型
     private var mPresenter: P? = null

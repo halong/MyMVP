@@ -1,12 +1,17 @@
 package com.example.mymvp.base.mvp
 
-abstract class BasePresenter< M : BaseModel,V : BaseView> {
+abstract class BasePresenter<M : BaseModel, V : BaseView> {
     private var mView: V? = null
-    private val mModel = setModel()
+    private var mModel: M? = null
 
     abstract fun setModel(): M
 
-    fun getModel() = mModel
+    fun getModel(): M {
+        if (mModel == null) {
+            mModel = setModel()
+        }
+        return mModel!!
+    }
 
     fun bindView(view: V) {
         mView = view

@@ -3,8 +3,8 @@ package com.example.mymvp.ui.main
 import android.os.Handler
 import android.os.Looper
 import com.example.mymvp.base.mvp.BaseModel
-import com.example.mymvp.bean.Banner
-import com.example.mymvp.bean.JsonData
+import com.example.mymvp.entity.Banner
+import com.example.mymvp.entity.JsonData
 import com.example.mymvp.network.HttpUtils
 import com.orhanobut.logger.Logger
 import rx.Observer
@@ -14,12 +14,11 @@ import java.net.URL
 class MainModel : BaseModel() {
 
     fun getBaiduHtml(callback: Callback<String>) {
-        val mainHandler = Handler(Looper.getMainLooper()) //主线程切换
+        val mainHandler = Handler(Looper.getMainLooper()) //主线程句柄
         Thread {  //子线程
             try {
                 val text = URL("https://www.baidu.com").readText()
-                Logger.d("hello")
-                mainHandler.post {
+                mainHandler.post {  //主线程切换
                     callback.success(text)
                 }
             } catch (e: Exception) {

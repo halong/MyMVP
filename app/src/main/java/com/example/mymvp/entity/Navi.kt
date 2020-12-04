@@ -1,6 +1,6 @@
-package com.example.mymvp.bean
+package com.example.mymvp.entity
 
-data class TreeArticle(
+data class Navi(
     val apkLink: String,
     val audit: Int,
     val author: String,
@@ -23,7 +23,7 @@ data class TreeArticle(
     val publishTime: Long,
     val realSuperChapterId: Int,
     val selfVisible: Int,
-    val shareDate: Long,
+    val shareDate: Any,
     val shareUser: String,
     val superChapterId: Int,
     val superChapterName: String,

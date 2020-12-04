@@ -1,4 +1,4 @@
-package com.example.mymvp.bean
+package com.example.mymvp.entity
 
 data class JsonData<T>(
     val data: T,

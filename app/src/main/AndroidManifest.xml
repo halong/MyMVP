@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMvp">
 
-        <activity android:name=".ui.login.LoginActivity"/>
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

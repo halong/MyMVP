@@ -3,26 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/index">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.mymvp.base.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/index"
+        android:name="com.example.mymvp.ui.main.index.IndexFragment"
+        android:label="@string/index"
+        tools:layout="@layout/fragment_index" />
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.mymvp.base.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/tree"
+        android:name="com.example.mymvp.ui.main.tree.TreeFragment"
+        android:label="@string/tree"
+        tools:layout="@layout/fragment_tree" />
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+    <fragment
+        android:id="@+id/navi"
+        android:name="com.example.mymvp.ui.main.navi.NaviFragment"
+        android:label="@string/navi"
+        tools:layout="@layout/fragment_navi" />
+
+    <fragment
+        android:id="@+id/mine"
+        android:name="com.example.mymvp.ui.main.mine.MineFragment"
+        android:label="@string/mine"
+        tools:layout="@layout/fragment_mine" />
+
 </navigation>

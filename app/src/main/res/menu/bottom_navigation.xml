@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/index"
+        android:icon="@drawable/selector_index"
+        android:title="@string/index" />
+    <item
+        android:id="@+id/tree"
+        android:icon="@drawable/selector_tree"
+        android:title="@string/tree" />
+    <item
+        android:id="@+id/navi"
+        android:icon="@drawable/selector_navi"
+        android:title="@string/navi" />
+    <item
+        android:id="@+id/mine"
+        android:icon="@drawable/selector_mine"
+        android:title="@string/mine" />
+</menu>

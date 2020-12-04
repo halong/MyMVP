@@ -1,9 +1,7 @@
 package com.example.mymvp.network
 
-import com.example.mymvp.bean.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.example.mymvp.entity.*
+import retrofit2.http.*
 import rx.Observable
 
 interface ApiService {
@@ -123,7 +121,11 @@ interface ApiService {
     页码：拼接在链接上，从0开始。
     author：作者昵称，不支持模糊匹配。
      */
-
+    @GET("article/list/{curPage}/json")
+    fun getArticlesByAuthor(
+        @Path("curPage") curPage: Int,
+        @Query("author") author: String
+    ): Observable<JsonData<AuthorArticleList>>
 
 
     /**
@@ -133,11 +135,9 @@ interface ApiService {
 
     方法：GET
     参数：无
-
-    可直接点击查看示例：https://www.wanandroid.com/navi/json
-
      */
-
+    @GET("navi/json")
+    fun getNavi(): Observable<JsonData<List<NaviList>>>
 
     /**
     4. 项目
@@ -160,10 +160,9 @@ interface ApiService {
     "visible": 0
     }
     ]
-    可以直接访问：https://www.wanandroid.com/project/tree/json
-
      */
-
+    @GET("project/tree/json")
+    fun getProjectTree(): Observable<JsonData<List<ProjectTree>>>
 
     /**
     4.2 项目列表数据
@@ -175,10 +174,9 @@ interface ApiService {
     参数：
     cid 分类的id，上面项目分类接口
     页码：拼接在链接中，从1开始。
-    可以直接访问：https://www.wanandroid.com/project/list/1/json?cid=294
-
      */
-
+    @GET("project/list/{curPage}/json")
+    fun getProjectList(@Path("curPage") curPage: Int, @Query("cid") cid: Int)
 
     /**
     5. 登录与注册
@@ -190,8 +188,37 @@ interface ApiService {
     username，password
     登录后会在cookie中返回账号密码，只要在客户端做cookie持久化存储即可自动登录验证。
 
+    {
+    "data": {
+    "admin": false,
+    "chapterTops": [],
+    "coinCount": 0,
+    "collectIds": [
+    15913,
+    15958,
+    16015,
+    16107,
+    16130
+    ],
+    "email": "",
+    "icon": "",
+    "id": 80675,
+    "nickname": "h_chenglong",
+    "password": "",
+    "publicName": "h_chenglong",
+    "token": "",
+    "type": 0,
+    "username": "h_chenglong"
+    },
+    "errorCode": 0,
+    "errorMsg": ""
+    }
      */
-
+    @POST("user/login")
+    fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Observable<JsonData<UserInfo>>
 
     /**
     5.2 注册
@@ -209,7 +236,8 @@ interface ApiService {
     https://www.wanandroid.com/user/logout/json
 
     方法：GET
-    访问了 logout 后，服务端会让客户端清除 Cookie（即cookie max-Age=0），如果客户端 Cookie 实现合理，可以实现自动清理，如果本地做了用户账号密码和保存，及时清理。
+    访问了 logout 后，服务端会让客户端清除 Cookie（即cookie max-Age=0），
+    如果客户端 Cookie 实现合理，可以实现自动清理，如果本地做了用户账号密码和保存，及时清理。
 
     如果需要特殊的errorCode 来支持清除数据，请反馈。
 

@@ -1,8 +1,14 @@
 package com.example.mymvp.ui.main
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.TextUtils
+import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.example.mymvp.R
 import com.example.mymvp.base.BaseActivity
+import com.example.mymvp.prefs.PrefsProperty
 import com.example.mymvp.databinding.ActivityMainBinding
 
 /**
@@ -12,29 +18,45 @@ import com.example.mymvp.databinding.ActivityMainBinding
  * 而在MVC中View会直接从Model中读取数据而不是通过 Controller。
  *
  *
- * Activity实现View接口，并持有Presenter对象
+ * Activity需实现View接口，并持有Presenter对象
+ *
+ * 创建activity：继承BaseActivity<M,V,P>,V
  */
 
-class MainActivity : BaseActivity<MainModel,MainView,MainPresenter>(), MainView {
+class MainActivity : BaseActivity<MainModel, MainView, MainPresenter>(), MainView {
     private lateinit var binding: ActivityMainBinding //这个类名与布局文件名对应
-    
+
+    //属性委托PrefsProperty，访问时自动从SharedPreferences取值，赋值时自动存入SharedPreferences
+    private var t: String by PrefsProperty("t", "hello")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initView()
+
+        MainLive.observe(this) {
+            if (TextUtils.equals(it, "finish")) {
+                finish()
+            }
+        }
     }
 
     override fun setPresenter() = MainPresenter()
 
+
     private fun initView() {
-        binding.tv.setOnClickListener {
-            getPresenter()?.test()
-        }
+        val navController = findNavController(R.id.navHostFragment)
+        navController.setGraph(R.navigation.nav_graph)
+        //navController每次跳转到的fragment都会重建, 这不合理，需要重写
+
+        binding.bottomNavigation.itemIconTintList = null  //使用menu里的自定义图标
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 
-    override fun showTest(string: String) {
-        binding.tv.text = string
+    companion object {
+        val MainLive = MutableLiveData<String>()
     }
+
 }

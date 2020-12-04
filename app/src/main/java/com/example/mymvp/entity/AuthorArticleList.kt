@@ -1,8 +1,8 @@
-package com.example.mymvp.bean
+package com.example.mymvp.entity
 
-data class ArticleList(
+data class AuthorArticleList(
     val curPage: Int,
-    val datas: List<Article>,
+    val datas: List<AuthorArticle>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,

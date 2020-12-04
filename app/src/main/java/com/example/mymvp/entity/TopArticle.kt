@@ -1,6 +1,6 @@
-package com.example.mymvp.bean
+package com.example.mymvp.entity
 
-data class Article(
+data class TopArticle(
     val apkLink: String,
     val audit: Int,
     val author: String,

@@ -1,7 +1,7 @@
-package com.example.mymvp.bean
+package com.example.mymvp.entity
 
-data class Tree(
-    val children: List<TreeChildren>,
+data class TreeChildren(
+    val children: List<Any>,
     val courseId: Int,
     val id: Int,
     val name: String,

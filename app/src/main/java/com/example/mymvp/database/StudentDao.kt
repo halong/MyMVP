@@ -1,6 +1,7 @@
 package com.example.mymvp.database
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 
 object StudentDao {
     @SuppressLint("Recycle")
@@ -20,6 +21,7 @@ object StudentDao {
             )
             cursor.moveToNext()
         }
+        cursor.close()
         db.close()
         return student
     }
@@ -43,20 +45,45 @@ object StudentDao {
             students.add(student)
             cursor.moveToNext()
         }
+        cursor.close()
         db.close()
         return students
     }
 
-    fun insert(student: Student){
-
+    fun insert(student: Student) {
+        val db = SQLiteUtils.mSQLiteOpenHelper.writableDatabase
+        val values = ContentValues()
+        values.put("name", student.name)
+        values.put("age", student.age)
+        db.insert("student", "id", values)
+        db.close()
     }
 
-    fun delete(){
-
+    fun insert(students: List<Student>) {
+        val db = SQLiteUtils.mSQLiteOpenHelper.writableDatabase
+        val values = ContentValues()
+        for (student in students) {
+            values.put("name", student.name)
+            values.put("age", student.age)
+            db.insert("student", "id", values)
+            values.clear()
+        }
+        db.close()
     }
 
-    fun update(){
+    fun delete(name: String) {
+        val db = SQLiteUtils.mSQLiteOpenHelper.writableDatabase
+        db.delete("student", "name = ?", arrayOf(name))
+        db.close()
+    }
 
+    fun update(student: Student) {
+        val db = SQLiteUtils.mSQLiteOpenHelper.writableDatabase
+        val values = ContentValues()
+        values.put("name", student.name)
+        values.put("age", student.age)
+        db.update("student", values, "id=?", arrayOf(student.id.toString()))
+        db.close()
     }
 
 

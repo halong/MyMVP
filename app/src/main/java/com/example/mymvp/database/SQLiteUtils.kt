@@ -6,7 +6,6 @@ object SQLiteUtils {
     private const val DB_NAME = "default.db"
     private const val DB_VERSION = 1
     val mSQLiteOpenHelper: MySQLiteOpenHelper by lazy {
-        MySQLiteOpenHelper(App.getInstance(), DB_NAME, DB_VERSION)
+        MySQLiteOpenHelper(App.getInstance(), null, DB_NAME, DB_VERSION)
     }
-
 }

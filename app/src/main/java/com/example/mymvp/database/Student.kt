@@ -1,3 +1,3 @@
 package com.example.mymvp.database
 
-data class Student(var id:Int,var name:String,var age:Int)
+data class Student(var id: Int = 0, var name: String, var age: Int)

@@ -1,9 +1,9 @@
 package com.example.mymvp.ui.main
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mymvp.R
@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<MainModel, MainView, MainPresenter>(), MainVie
 
         initView()
 
-        MainLive.observe(this) {
+        MainLiveData.observe(this) {
             if (TextUtils.equals(it, "finish")) {
                 finish()
             }
@@ -47,16 +47,17 @@ class MainActivity : BaseActivity<MainModel, MainView, MainPresenter>(), MainVie
 
 
     private fun initView() {
-        val navController = findNavController(R.id.navHostFragment)
+        val navController: NavController = findNavController(R.id.navHostFragment)
         navController.setGraph(R.navigation.nav_graph)
         //navController每次跳转到的fragment都会重建, 这不合理，需要重写
+        navController.navigatorProvider
 
         binding.bottomNavigation.itemIconTintList = null  //使用menu里的自定义图标
         binding.bottomNavigation.setupWithNavController(navController)
     }
 
     companion object {
-        val MainLive = MutableLiveData<String>()
+        val MainLiveData = MutableLiveData<String>()
     }
 
 }

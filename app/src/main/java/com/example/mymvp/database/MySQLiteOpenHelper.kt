@@ -6,10 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class MySQLiteOpenHelper(
     context: Context,
+    factory: SQLiteDatabase.CursorFactory?,
     name: String,
     version: Int
 ) :
-    SQLiteOpenHelper(context, name, null, version) {
+    SQLiteOpenHelper(context, name, factory, version) {
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(
             "create table if not exists student(" +

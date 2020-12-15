@@ -37,7 +37,7 @@ class MainActivity : BaseActivity<MainModel, MainView, MainPresenter>(), MainVie
         initView()
 
         MainLiveData.observe(this) {
-            if (TextUtils.equals(it, "finish")) {
+            if (TextUtils.equals(it, FINISH)) {
                 finish()
             }
         }
@@ -58,6 +58,8 @@ class MainActivity : BaseActivity<MainModel, MainView, MainPresenter>(), MainVie
 
     companion object {
         val MainLiveData = MutableLiveData<String>()
+
+        const val FINISH = "finish"
     }
 
 }

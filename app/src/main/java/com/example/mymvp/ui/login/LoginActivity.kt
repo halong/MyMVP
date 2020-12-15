@@ -13,6 +13,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        MainActivity.MainLive.value = "finish"
+//        MainActivity.MainLiveData.value=MainActivity.FINISH
     }
 }
